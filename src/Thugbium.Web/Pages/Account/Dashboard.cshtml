@@ -4,7 +4,7 @@
 <div class="container page-wrap home-page">
     <header class="home-header">
         <div class="home-avatar-container" aria-label="Character render pending"><div class="home-avatar-empty"></div><span class="avatar-status icon-online" title="Online"></span></div>
-        <div class="home-header-content"><h1>Hello, @Model.UserData.UserName!</h1><a class="btn btn-outline-light btn-sm" asp-page="/Account/Settings">Settings</a></div>
+        <div class="home-header-content"><h1>Hello, @Model.UserData.UserName!</h1></div>
     </header>
 
     <section class="home-section home-friends">
@@ -18,8 +18,8 @@
             <section class="home-section"><div class="home-section-header"><h2>Favorite Games</h2><a class="btn btn-outline-light btn-sm" asp-page="/Places/Index">See All</a></div><div class="dark-card home-section-content"><div class="empty-state">You have not favorited any places yet.</div></div></section>
         </div>
         <div class="col-lg-4 home-right-col">
-            <section class="home-section"><div class="home-section-header"><h2>News</h2></div><div class="dark-card home-section-content"><p class="text-muted mb-0">No news right now.</p></div></section>
-            <section class="home-section"><div class="home-section-header"><h2>Account</h2></div><div class="dark-card home-section-content"><p class="text-muted mb-0">Discord: @(Model.UserData.IsDiscordVerified ? "Verified" : "Not verified")</p>@if (!Model.UserData.IsDiscordVerified) { <a class="btn btn-primary btn-sm mt-3" asp-page="/Account/Discord">Verify with Discord</a> }</div></section>
+            <section class="home-section"><div class="home-section-header"><h2>Blog News</h2></div><div class="dark-card home-section-content"><p class="text-muted mb-0">No news right now.</p></div></section>
+            <section class="home-section"><div class="home-section-header"><h2>Friend Activity</h2></div><div class="dark-card home-section-content"><p class="text-muted mb-0">No friend activity to show.</p></div></section>
         </div>
     </div>
 

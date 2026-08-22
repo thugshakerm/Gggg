@@ -20,8 +20,15 @@
                 </ul>
                 @if (User.Identity?.IsAuthenticated == true)
                 {
-                    <a class="nav-link text-light" asp-page="/Account/Dashboard">@User.Identity.Name</a>
-                    <form method="post" asp-page="/Account/Logout"><button class="btn btn-outline-light btn-sm ml-md-2">Log Out</button></form>
+                    <div class="dropdown ml-md-2">
+                        <button class="btn btn-outline-light btn-sm dropdown-toggle" type="button" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@User.Identity.Name</button>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
+                            <a class="dropdown-item" asp-page="/Account/Dashboard">Home</a>
+                            <a class="dropdown-item" asp-page="/Account/Settings">Settings</a>
+                            <div class="dropdown-divider"></div>
+                            <form method="post" asp-page="/Account/Logout"><button class="dropdown-item" type="submit">Log Out</button></form>
+                        </div>
+                    </div>
                 }
                 else
                 {
