@@ -3,7 +3,7 @@ setlocal EnableExtensions
 
 REM Run this file as Administrator when using IIS.
 REM Change these values once for your VPS.
-set "REPO=C:\Thugbium\Gggg"
+set "REPO=C:\Thugbium\site"
 set "PUBLISH=C:\inetpub\thugbium"
 set "APP_POOL=Thugbium"
 set "BRANCH=arena/01a02820-gggg"
