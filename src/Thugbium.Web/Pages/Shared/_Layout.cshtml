@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
 <body class="d-flex flex-column min-vh-100">
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark site-nav">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark site-nav @(User.Identity?.IsAuthenticated == true ? "authenticated-nav" : "")">
         <div class="container">
             <a class="navbar-brand" asp-page="/Index" aria-label="Thugbium home"><img class="site-logo" src="https://raw.githubusercontent.com/finobenet/finobenet/main/public/s/img/finnobe3logo.png" alt="Temporary logo" /></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#siteNav"><span class="navbar-toggler-icon"></span></button>
@@ -21,7 +21,7 @@
                 @if (User.Identity?.IsAuthenticated == true)
                 {
                     <div class="dropdown ml-md-2">
-                        <button class="btn btn-outline-light btn-sm dropdown-toggle" type="button" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@User.Identity.Name</button>
+                        <button class="btn btn-outline-light btn-sm dropdown-toggle" type="button" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</button>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
                             <a class="dropdown-item" asp-page="/Account/Dashboard">Home</a>
                             <a class="dropdown-item" asp-page="/Account/Settings">Settings</a>
@@ -41,8 +41,11 @@
     @if (User.Identity?.IsAuthenticated == true)
     {
         <div class="authenticated-shell flex-grow-1">
-            <aside class="rbx-left-sidebar" aria-label="Site navigation">
-                <nav><a asp-page="/Account/Dashboard" class="sidebar-link">Home</a><a asp-page="/Catalog" class="sidebar-link">Catalog</a><a asp-page="/Places/Index" class="sidebar-link">Places</a><a asp-page="/Account/Settings" class="sidebar-link">Settings</a></nav>
+            <aside class="rbx-left-sidebar" aria-label="Account sidebar">
+                <a class="sidebar-user" asp-page="/Users/Profile" asp-route-username="@User.Identity!.Name">
+                    <span class="sidebar-headshot"><span class="avatar-status icon-online" title="Online"></span></span>
+                    <span class="sidebar-username">@User.Identity.Name</span>
+                </a>
             </aside>
             <main class="authenticated-content">@RenderBody()</main>
         </div>
