@@ -1,4 +1,10 @@
 @page
 @model Thugbium.Web.Pages.CatalogModel
 @{ ViewData["Title"] = "Catalog"; }
-<div class="container page-wrap"><h1 class="h3 font-weight-bold">Catalog</h1><p class="text-muted">The catalog is being set up. Original Thugbium items will appear here.</p><div class="dark-card p-4">No items are available yet.</div></div>
+<div class="container page-wrap catalog-page">
+    <h1 class="h3 font-weight-bold mb-3">Catalog</h1>
+    <div class="row">
+        <aside class="col-md-3 mb-3"><div class="dark-card catalog-filter"><div class="catalog-filter-title">Category</div><a class="active" href="#">Featured Items</a><a href="#">Accessories</a><a href="#">Clothing</a><a href="#">Body Parts</a><a href="#">Gear</a><a href="#">Collectibles</a></div></aside>
+        <div class="col-md-9"><div class="dark-card p-3"><div class="input-group mb-3"><input class="form-control" placeholder="Search the catalog" disabled /><div class="input-group-append"><button class="btn btn-primary" disabled>Search</button></div></div><div class="home-section-header"><h2>Featured Items</h2></div><div class="empty-state">Original Thugbium catalog items will appear here.</div></div></div>
+    </div>
+</div>

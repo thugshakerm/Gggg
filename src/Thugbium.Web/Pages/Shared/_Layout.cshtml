@@ -38,7 +38,19 @@
             </div>
         </div>
     </nav>
-    <main class="flex-grow-1">@RenderBody()</main>
+    @if (User.Identity?.IsAuthenticated == true)
+    {
+        <div class="authenticated-shell flex-grow-1">
+            <aside class="rbx-left-sidebar" aria-label="Site navigation">
+                <nav><a asp-page="/Account/Dashboard" class="sidebar-link">Home</a><a asp-page="/Catalog" class="sidebar-link">Catalog</a><a asp-page="/Places/Index" class="sidebar-link">Places</a><a asp-page="/Account/Settings" class="sidebar-link">Settings</a></nav>
+            </aside>
+            <main class="authenticated-content">@RenderBody()</main>
+        </div>
+    }
+    else
+    {
+        <main class="flex-grow-1">@RenderBody()</main>
+    }
     <footer class="site-footer py-4 mt-auto"><div class="container d-md-flex justify-content-between"><span>© 2025 TB, A olroblox revival by thugshaker.</span><span class="mt-2 mt-md-0"><a href="#">Rules</a><a href="#">Terms</a><a href="#">Privacy</a><a href="#">Help</a></span></div></footer>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
