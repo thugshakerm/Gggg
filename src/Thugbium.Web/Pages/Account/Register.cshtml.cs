@@ -10,6 +10,8 @@ public sealed class RegisterModel(AccountService accounts) : PageModel
 {
     [BindProperty] public RegisterInput Input { get; set; } = new();
 
+    public IActionResult OnGet() => User.Identity?.IsAuthenticated == true ? RedirectToPage("/Account/Dashboard") : Page();
+
     public async Task<IActionResult> OnPostAsync(CancellationToken cancellationToken)
     {
         if (!ModelState.IsValid) return Page();

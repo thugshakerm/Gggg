@@ -1,4 +1,51 @@
 @page
 @model Thugbium.Web.Pages.Account.DashboardModel
 @{ ViewData["Title"] = "Home"; }
-<div class="container page-wrap"><h1 class="h3 font-weight-bold">Hey, @Model.UserData.UserName.</h1><p class="text-muted">This is your Thugbium home.</p><div class="row"><div class="col-md-7 mb-3"><div class="card dark-card"><div class="card-header font-weight-bold">Account</div><div class="card-body"><p>Discord: <strong>@(Model.UserData.IsDiscordVerified ? Model.UserData.DiscordUserName : "Not verified")</strong></p>@if (!Model.UserData.IsDiscordVerified) { <a class="btn btn-primary" asp-page="/Account/Discord">Verify with Discord</a> } else { <a class="btn btn-outline-light" asp-page="/Account/Settings">Account settings</a> }</div></div></div><div class="col-md-5 mb-3"><div class="card dark-card"><div class="card-header font-weight-bold">Your places</div><div class="card-body"><p class="text-muted">You have no places yet.</p><a class="btn btn-outline-light" asp-page="/Places/Index">Browse places</a></div></div></div></div></div>
+<div class="container page-wrap home-page">
+    <div class="row">
+        <div class="col-lg-3 mb-3">
+            <h1 class="h5 mb-3">@Model.UserData.UserName</h1>
+            <div class="card dark-card">
+                <div class="card-body p-3">
+                    <div class="avatar-render" id="avatar-render" data-user="@Model.UserData.UserName">
+                        <div class="spinner-border text-primary" role="status"><span class="sr-only">Loading</span></div>
+                        <span class="avatar-render-status">Rendering character...</span>
+                    </div>
+                </div>
+            </div>
+            <a class="btn btn-outline-light btn-sm btn-block mt-2" asp-page="/Account/Settings">Settings</a>
+        </div>
+        <div class="col-lg-6 mb-3">
+            <h2 class="h5 mb-3">Recently Played</h2>
+            <div class="card dark-card home-panel"><div class="card-body"><div class="empty-state">You have not played any places yet.<br /><a asp-page="/Places/Index">Find a place to play.</a></div></div></div>
+        </div>
+        <div class="col-lg-3 mb-3">
+            <h2 class="h5 mb-3">News</h2>
+            <div class="card dark-card home-panel"><div class="card-body"><p class="mb-0 text-muted">No news right now.</p></div></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 mb-3">
+            <div class="card dark-card home-panel"><div class="card-body"><h2 class="h6 font-weight-bold">Account Status</h2><p class="mb-0 text-muted">Discord: @(Model.UserData.IsDiscordVerified ? "Verified" : "Not verified")</p>@if (!Model.UserData.IsDiscordVerified) { <a class="btn btn-primary btn-sm mt-3" asp-page="/Account/Discord">Verify with Discord</a> }</div></div>
+        </div>
+        <div class="col-lg-9 mb-3">
+            <div class="card dark-card home-panel"><div class="card-body"><h2 class="h5">Feed</h2><div class="input-group mb-3"><input class="form-control" placeholder="New shout" disabled /><div class="input-group-append"><button class="btn btn-primary" disabled>Submit</button></div></div><div class="empty-state">Your feed is empty.</div></div></div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+<script>
+    // This is intentionally only a renderer loading state. It will be replaced by a
+    // private Thugbium avatar-render service once the game-worker/RCC lab exists.
+    (() => {
+        const container = document.getElementById('avatar-render');
+        if (!container) return;
+        const status = container.querySelector('.avatar-render-status');
+        let dotCount = 0;
+        window.setInterval(() => {
+            dotCount = (dotCount + 1) % 4;
+            status.textContent = 'Rendering character' + '.'.repeat(dotCount + 1);
+        }, 700);
+    })();
+</script>
+}
