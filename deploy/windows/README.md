@@ -1,17 +1,15 @@
-# Windows VPS deployment (IIS)
+# Windows VPS deployment (direct ASP.NET Core)
 
-This setup uses a **sparse Git checkout**. The VPS clones only the production folders it needs:
+Thugbium does not need IIS. The site runs directly with ASP.NET Core/Kestrel on port `8091`. Add Caddy later when a public Thugbium subdomain and HTTPS are ready.
+
+The sparse checkout contains only:
 
 ```text
 src/
 deploy/
 ```
 
-It does not check out the root research notes or any development-only files.
-
-## One-time install
-
-Run Command Prompt or PowerShell as Administrator:
+## One-time clone
 
 ```bat
 mkdir C:\Thugbium
@@ -22,56 +20,32 @@ git sparse-checkout set src deploy
 git checkout
 ```
 
-The local folder is intentionally named:
+Install Git for Windows, the .NET 10 SDK, and PostgreSQL. Configure the database and `appsettings.Production.json` as described in `src\Thugbium.Web\README.md`.
 
-```text
-C:\Thugbium\site
-```
+## Update and restart
 
-The GitHub repository name remains `Gggg`, but that name does not need to appear in your VPS deployment path.
-
-Install these first:
-
-- Git for Windows
-- .NET 10 Hosting Bundle
-- PostgreSQL
-- IIS with the ASP.NET Core Module from the Hosting Bundle
-
-Create the application publish directory:
-
-```bat
-mkdir C:\inetpub\thugbium
-```
-
-Create an IIS application pool named `Thugbium`, configure it as **No Managed Code**, and point the IIS site/application physical path at:
-
-```text
-C:\inetpub\thugbium
-```
-
-The first publish can be run from the sparse checkout:
-
-```bat
-dotnet publish src\Thugbium.Web\Thugbium.Web.csproj -c Release -o C:\inetpub\thugbium
-```
-
-Use a server-local `appsettings.Production.json` or environment variables for real PostgreSQL and Discord values. Do not commit production passwords, Discord client secrets, or ASP.NET data-protection keys.
-
-## Updating later
-
-Run this as Administrator:
+Run this from an elevated Command Prompt or PowerShell:
 
 ```bat
 C:\Thugbium\site\deploy\windows\update-thugbium.bat
 ```
 
-It performs, in order:
+The script:
 
-1. `git fetch`
-2. `git pull --ff-only origin arena/01a02820-gggg`
-3. `dotnet restore`
-4. Stops the IIS application pool
-5. `dotnet publish`
-6. Starts the IIS application pool
+1. Fetches and pulls `arena/01a02820-gggg` with `--ff-only`.
+2. Stops the exact Thugbium process recorded in `C:\inetpub\thugbium\thugbium.pid`.
+3. Restores and publishes the Razor Pages application.
+4. Starts it in the background on port `8091`.
+5. Writes the new process ID to the PID file for the next update.
 
-Sparse checkout remains active during updates, so the VPS continues to receive only `src/` and `deploy/` from the branch. The `--ff-only` option refuses to overwrite unexpected server-side commits.
+Open the local test site at `http://localhost:8091`.
+
+## First run
+
+The updater can perform the first publish/start too. Run it after the database configuration exists:
+
+```bat
+C:\Thugbium\site\deploy\windows\update-thugbium.bat
+```
+
+Do not run a second manual `dotnet Thugbium.Web.dll` process at the same time. The updater owns the process on port `8091`.

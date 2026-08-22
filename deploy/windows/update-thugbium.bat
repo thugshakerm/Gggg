@@ -1,16 +1,17 @@
 @echo off
 setlocal EnableExtensions
 
-REM Run this file as Administrator when using IIS.
-REM Change these values once for your VPS.
+REM Thugbium one-VPS updater. No IIS required.
+REM Run from an elevated Command Prompt or PowerShell.
 set "REPO=C:\Thugbium\site"
 set "PUBLISH=C:\inetpub\thugbium"
-set "APP_POOL=Thugbium"
 set "BRANCH=arena/01a02820-gggg"
 set "PROJECT=src\Thugbium.Web\Thugbium.Web.csproj"
+set "PORT=8091"
+set "PID_FILE=%PUBLISH%\thugbium.pid"
 
 echo.
-echo === Updating Thugbium from %BRANCH% ===
+echo === Pulling Thugbium updates ===
 if not exist "%REPO%\.git" (
     echo ERROR: Repository was not found at %REPO%
     exit /b 1
@@ -22,27 +23,26 @@ git checkout %BRANCH% || goto :failed
 git pull --ff-only origin %BRANCH% || goto :failed
 
 echo.
-echo === Stopping IIS application pool ===
-%windir%\System32\inetsrv\appcmd stop apppool /apppool.name:"%APP_POOL%" || goto :failed
+echo === Stopping the current Thugbium process ===
+powershell -NoProfile -ExecutionPolicy Bypass -Command "$pidFile='%PID_FILE%'; if (Test-Path $pidFile) { $id=(Get-Content $pidFile -ErrorAction SilentlyContinue | Select-Object -First 1); if ($id) { Stop-Process -Id $id -Force -ErrorAction SilentlyContinue }; Remove-Item $pidFile -Force -ErrorAction SilentlyContinue }"
 
 echo.
 echo === Publishing ASP.NET Core application ===
-dotnet restore "%PROJECT%" || goto :restart_failed
-dotnet publish "%PROJECT%" --configuration Release --no-restore --output "%PUBLISH%" || goto :restart_failed
+dotnet restore "%PROJECT%" || goto :failed
+dotnet publish "%PROJECT%" --configuration Release --no-restore --output "%PUBLISH%" || goto :failed
 
 echo.
-echo === Starting IIS application pool ===
-%windir%\System32\inetsrv\appcmd start apppool /apppool.name:"%APP_POOL%" || goto :failed
+echo === Starting Thugbium on port %PORT% ===
+powershell -NoProfile -ExecutionPolicy Bypass -Command "$publish='%PUBLISH%'; $pidFile='%PID_FILE%'; $process=Start-Process -FilePath 'dotnet' -ArgumentList ('Thugbium.Web.dll --urls http://0.0.0.0:%PORT%') -WorkingDirectory $publish -WindowStyle Hidden -PassThru; $process.Id | Set-Content $pidFile"
+
+if errorlevel 1 goto :failed
 
 echo.
 echo Thugbium was updated and restarted successfully.
+echo Local address: http://localhost:%PORT%
 exit /b 0
-
-:restart_failed
-%windir%\System32\inetsrv\appcmd start apppool /apppool.name:"%APP_POOL%" >nul 2>&1
-goto :failed
 
 :failed
 echo.
-echo UPDATE FAILED. Check the output above; the previous site build was restarted when possible.
+echo UPDATE FAILED. Check the output above.
 exit /b 1
