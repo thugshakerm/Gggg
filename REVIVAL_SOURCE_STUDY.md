@@ -98,3 +98,16 @@ Use the archived 2017–2018 Style Guide for component behavior and layout consi
 ## Current project implication
 
 The current `catalog-2018-demo.html` should remain a visual experiment, not the production frontend base. The next proper implementation should start with a small component library and original assets, then attach it to a secure account/catalog API.
+
+## Current Thugbium interface direction
+
+The current prototype direction is deliberately simple and revival-like rather than a polished modern game-platform brand:
+
+- Use **Bootstrap 4** for the responsive grid, cards, forms, navbar, alerts, and buttons.
+- Prefer Bootstrap's dark palette for account-facing pages: dark navbar, dark cards, restrained borders, and standard primary actions.
+- Keep copy short and practical: account, client, places, Studio, catalog, and Discord—not fabricated engagement statistics or generic marketing claims.
+- Avoid emojis, decorative/glowing status indicators, glass effects, oversized metrics, and ornamental icon cards.
+- Discord, rather than email, is planned as the account-verification path. The registration prototype uses a Discord verification control modeled after the publicly released BubbaBlox v2 page source, but no OAuth/bot implementation exists yet.
+- The temporary navbar image is only a layout placeholder. Remove the adjacent `THUGBIUM` text so a future Thugbium wordmark image can occupy that space alone.
+
+The newest registration prototype is `prototypes/thugbium-register-v8.html`. Older prototypes are retained in `prototypes/` as iteration history, not as production pages.
