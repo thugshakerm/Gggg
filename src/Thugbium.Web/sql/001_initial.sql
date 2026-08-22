@@ -1,0 +1,10 @@
+CREATE TABLE users (
+    id uuid PRIMARY KEY,
+    user_name varchar(20) NOT NULL UNIQUE,
+    password_hash varchar(255) NOT NULL,
+    discord_id varchar(32) UNIQUE,
+    discord_user_name varchar(100),
+    is_discord_verified boolean NOT NULL DEFAULT false,
+    created_at timestamptz NOT NULL DEFAULT now(),
+    updated_at timestamptz NOT NULL DEFAULT now()
+);

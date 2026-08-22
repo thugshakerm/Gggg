@@ -1,0 +1,4 @@
+@page
+@model Thugbium.Web.Pages.Account.SettingsModel
+@{ ViewData["Title"] = "Settings"; }
+<div class="container page-wrap"><div class="card dark-card"><div class="card-header"><h1 class="h3 font-weight-bold mb-0">Settings</h1></div><div class="card-body p-4"><h2 class="h5">Account</h2><p class="text-muted">Username: @User.Identity?.Name</p><hr class="border-secondary" /><h2 class="h5">Discord</h2><p class="text-muted">Discord verification and account linking are managed from your dashboard.</p><a class="btn btn-primary" asp-page="/Account/Discord">Discord settings</a></div></div></div>
