@@ -2,50 +2,26 @@
 @model Thugbium.Web.Pages.Account.DashboardModel
 @{ ViewData["Title"] = "Home"; }
 <div class="container page-wrap home-page">
-    <div class="row">
-        <div class="col-lg-3 mb-3">
-            <h1 class="h5 mb-3">@Model.UserData.UserName</h1>
-            <div class="card dark-card">
-                <div class="card-body p-3">
-                    <div class="avatar-render" id="avatar-render" data-user="@Model.UserData.UserName">
-                        <div class="spinner-border text-primary" role="status"><span class="sr-only">Loading</span></div>
-                        <span class="avatar-render-status">Rendering character...</span>
-                    </div>
-                </div>
-            </div>
-            <a class="btn btn-outline-light btn-sm btn-block mt-2" asp-page="/Account/Settings">Settings</a>
+    <header class="home-header">
+        <div class="home-avatar-container" aria-label="Character render pending"><div class="home-avatar-empty"></div><span class="avatar-status icon-online" title="Online"></span></div>
+        <div class="home-header-content"><h1>Hello, @Model.UserData.UserName!</h1><a class="btn btn-outline-light btn-sm" asp-page="/Account/Settings">Settings</a></div>
+    </header>
+
+    <section class="home-section home-friends">
+        <div class="home-section-header"><h2>Friends (0)</h2><a class="btn btn-outline-light btn-sm disabled" href="#">See All</a></div>
+        <div class="dark-card home-section-content"><div class="empty-state">No friends to show yet.</div></div>
+    </section>
+
+    <div class="row home-columns">
+        <div class="col-lg-8 home-left-col">
+            <section class="home-section"><div class="home-section-header"><h2>Continue Playing</h2><a class="btn btn-outline-light btn-sm" asp-page="/Places/Index">See All</a></div><div class="dark-card home-section-content"><div class="empty-state">You have not played any places yet.</div></div></section>
+            <section class="home-section"><div class="home-section-header"><h2>Favorite Games</h2><a class="btn btn-outline-light btn-sm" asp-page="/Places/Index">See All</a></div><div class="dark-card home-section-content"><div class="empty-state">You have not favorited any places yet.</div></div></section>
         </div>
-        <div class="col-lg-6 mb-3">
-            <h2 class="h5 mb-3">Recently Played</h2>
-            <div class="card dark-card home-panel"><div class="card-body"><div class="empty-state">You have not played any places yet.<br /><a asp-page="/Places/Index">Find a place to play.</a></div></div></div>
-        </div>
-        <div class="col-lg-3 mb-3">
-            <h2 class="h5 mb-3">News</h2>
-            <div class="card dark-card home-panel"><div class="card-body"><p class="mb-0 text-muted">No news right now.</p></div></div>
+        <div class="col-lg-4 home-right-col">
+            <section class="home-section"><div class="home-section-header"><h2>News</h2></div><div class="dark-card home-section-content"><p class="text-muted mb-0">No news right now.</p></div></section>
+            <section class="home-section"><div class="home-section-header"><h2>Account</h2></div><div class="dark-card home-section-content"><p class="text-muted mb-0">Discord: @(Model.UserData.IsDiscordVerified ? "Verified" : "Not verified")</p>@if (!Model.UserData.IsDiscordVerified) { <a class="btn btn-primary btn-sm mt-3" asp-page="/Account/Discord">Verify with Discord</a> }</div></section>
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-3 mb-3">
-            <div class="card dark-card home-panel"><div class="card-body"><h2 class="h6 font-weight-bold">Account Status</h2><p class="mb-0 text-muted">Discord: @(Model.UserData.IsDiscordVerified ? "Verified" : "Not verified")</p>@if (!Model.UserData.IsDiscordVerified) { <a class="btn btn-primary btn-sm mt-3" asp-page="/Account/Discord">Verify with Discord</a> }</div></div>
-        </div>
-        <div class="col-lg-9 mb-3">
-            <div class="card dark-card home-panel"><div class="card-body"><h2 class="h5">Feed</h2><div class="input-group mb-3"><input class="form-control" placeholder="New shout" disabled /><div class="input-group-append"><button class="btn btn-primary" disabled>Submit</button></div></div><div class="empty-state">Your feed is empty.</div></div></div>
-        </div>
-    </div>
+
+    <section class="home-section"><div class="home-section-header"><h2>My Feed</h2></div><div class="dark-card home-section-content"><div class="input-group mb-3"><input class="form-control" placeholder="New shout" disabled /><div class="input-group-append"><button class="btn btn-primary" disabled>Submit</button></div></div><div class="empty-state">Your feed is empty.</div></div></section>
 </div>
-@section Scripts {
-<script>
-    // This is intentionally only a renderer loading state. It will be replaced by a
-    // private Thugbium avatar-render service once the game-worker/RCC lab exists.
-    (() => {
-        const container = document.getElementById('avatar-render');
-        if (!container) return;
-        const status = container.querySelector('.avatar-render-status');
-        let dotCount = 0;
-        window.setInterval(() => {
-            dotCount = (dotCount + 1) % 4;
-            status.textContent = 'Rendering character' + '.'.repeat(dotCount + 1);
-        }, 700);
-    })();
-</script>
-}
