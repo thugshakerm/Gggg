@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
@@ -39,5 +40,5 @@ public sealed class AccountService(ThugbiumDbContext database)
             new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
             new Claim(ClaimTypes.Name, user.UserName),
             new Claim("discord_verified", user.IsDiscordVerified.ToString().ToLowerInvariant())
-        ], "ThugbiumCookie"));
+        ], CookieAuthenticationDefaults.AuthenticationScheme));
 }
