@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Create Account - Thugbium v8</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <style>
+    body { min-height: 100vh; background: #1b1e21; color: #f8f9fa; font-family: Gotham, "Gotham SSm A", "Gotham SSm B", Arial, sans-serif; }
+    .navbar { min-height: 58px; border-bottom: 1px solid #3f454a; }
+    .navbar-brand { color: #f8f9fa !important; font-size: 22px; font-weight: 800; letter-spacing: -1px; }
+    .revival-logo { width: 30px; height: 30px; object-fit: contain; margin-right: 8px; }
+    .brand-blue { color: #1685d1; }
+    .btn-primary { background: #1685d1; border-color: #0d75bc; }
+    .btn-primary:hover { background: #0e73b7; border-color: #0a65a3; }
+    /* BubbaBlox v2 Discord verification control, rebuilt from its archived public source. */
+    .discordversection { background: rgba(0,0,0,0.1); padding: 15px; border-radius: 5px; }
+    .btn-discord-verify { display: flex; align-items: center; justify-content: center; background-color: #5865F2; color: #000 !important; padding: 10px 15px; border-radius: 4px; text-decoration: none; font-weight: bold; margin: 0 auto; max-width: 250px; transition: background-color .3s; }
+    .btn-discord-verify:hover { background-color: #4D79FF; color: #000 !important; text-decoration: none; }
+    .discord-logo { width: 24px; height: 24px; margin-right: 10px; }
+    .register-wrap { max-width: 880px; padding-top: 52px; padding-bottom: 58px; }
+    .register-card { background: #282c30; border: 1px solid #454b50; border-radius: 4px; box-shadow: none; }
+    .register-card .card-header { background: #343a40; border-bottom-color: #454b50; padding: 20px 25px; }
+    .register-card .card-body { padding: 25px; }
+    .register-title { font-size: 25px; font-weight: 700; letter-spacing: -.7px; margin: 0; }
+    .register-subtitle { color: #b8c1c8; font-size: 14px; margin: 6px 0 0; }
+    .form-control { color: #f8f9fa; background: #212529; border-color: #5a6268; min-height: 39px; }
+    .form-control:focus { color: #f8f9fa; background: #212529; border-color: #1685d1; box-shadow: 0 0 0 .15rem rgba(22,133,209,.15); }
+    .form-text { color: #adb5bd; font-size: 12px; }
+    .side-note { background: #212529; border: 1px solid #454b50; border-radius: 3px; padding: 18px; font-size: 13px; color: #c1c7cc; }
+    .side-note h2 { color: #f8f9fa; font-size: 16px; font-weight: 700; }
+    footer { border-top: 1px solid #3f454a; color: #adb5bd; font-size: 12px; background: #212529; }
+    footer a { color: #adb5bd; margin-left: 14px; }
+    footer a:hover { color: #1685d1; text-decoration: none; }
+  </style>
+</head>
+<body class="d-flex flex-column">
+  <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="thugbium-2017-v3.html"><img class="revival-logo" src="https://raw.githubusercontent.com/finobenet/finobenet/main/public/s/img/finnobe3logo.png" alt="">THUG<span class="brand-blue">BIUM</span></a>
+      <span class="navbar-text text-light small">Already have an account? <a class="font-weight-bold" href="#login">Log In</a></span>
+    </div>
+  </nav>
+
+  <main class="container register-wrap flex-grow-1">
+    <div class="row justify-content-center">
+      <div class="col-lg-9">
+        <div class="card register-card">
+          <div class="card-header d-sm-flex align-items-center justify-content-between"><div><h1 class="register-title">Create an account</h1><p class="register-subtitle">Pick a username, make a password, then link Discord.</p></div><div class="discordversection mt-3 mt-sm-0"><a class="btn-discord-verify" href="#discord"><img src="data:image/png;base64,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" alt="Discord" class="discord-logo">Verify with Discord</a></div></div>
+          <div class="card-body">
+            <form id="registerForm" novalidate>
+              <div class="row">
+                <div class="col-md-7">
+                  <div class="form-group"><label for="username" class="font-weight-bold">Username</label><input class="form-control" id="username" name="username" autocomplete="username" required minlength="3" maxlength="20"><small class="form-text">3–20 characters. Letters, numbers, and underscores only.</small></div>
+                  
+                  <div class="form-group"><label for="password" class="font-weight-bold">Password</label><input type="password" class="form-control" id="password" name="password" autocomplete="new-password" required minlength="8"><small class="form-text">Use at least 8 characters. Do not reuse an old password.</small></div>
+                  <div class="form-group"><label for="confirmPassword" class="font-weight-bold">Confirm password</label><input type="password" class="form-control" id="confirmPassword" autocomplete="new-password" required></div>
+                  <div class="form-group form-check"><input type="checkbox" class="form-check-input" id="terms" required><label class="form-check-label" for="terms">I agree to the <a href="#terms">Terms of Use</a> and <a href="#rules">Community Rules</a>.</label></div>
+                  <div class="alert alert-danger d-none" id="formError" role="alert"></div>
+                  <button class="btn btn-primary px-4" type="submit">Create Account</button>
+                </div>
+                <div class="col-md-5 mt-4 mt-md-0"><aside class="side-note"><h2>Before you sign up</h2><p>Thugbium is a 2017 revival project. Keep your account secure and be decent to other players.</p><p class="mb-0">Discord verification will be used instead of email verification. The button above is a preview until the bot is ready.</p></aside></div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="py-4 mt-auto"><div class="container d-md-flex justify-content-between"><span>© 2025 TB, A olroblox revival by thugshaker.</span><span class="d-block d-md-inline mt-2 mt-md-0"><a href="#rules">Rules</a><a href="#terms">Terms</a><a href="#privacy">Privacy</a><a href="#help">Help</a></span></div></footer>
+  <script>
+    document.getElementById('registerForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+      const error = document.getElementById('formError');
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const confirmation = document.getElementById('confirmPassword').value;
+      const terms = document.getElementById('terms').checked;
+      let message = '';
+      if (!/^[A-Za-z0-9_]{3,20}$/.test(username)) message = 'Your username needs 3–20 letters, numbers, or underscores.';
+      else if (password.length < 8) message = 'Your password needs to be at least 8 characters.';
+      else if (password !== confirmation) message = 'Those passwords do not match.';
+      else if (!terms) message = 'Please agree to the Terms of Use and Community Rules.';
+      if (message) { error.textContent = message; error.classList.remove('d-none'); return; }
+      error.className = 'alert alert-success';
+      error.textContent = 'Looks good. Account registration and Discord verification will be connected soon.';
+    });
+  </script>
+</body>
+</html>
