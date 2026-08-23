@@ -22,5 +22,18 @@ public sealed class ThugbiumDbContext(DbContextOptions<ThugbiumDbContext> option
         users.Property(user => user.UpdatedAt).HasColumnName("updated_at");
         users.HasIndex(user => user.UserName).IsUnique();
         users.HasIndex(user => user.DiscordId).IsUnique();
+
+        var places = modelBuilder.Entity<ThugbiumPlace>();
+        places.ToTable("places");
+        places.HasKey(place => place.Id);
+        places.Property(place => place.Id).HasColumnName("id");
+        places.Property(place => place.OwnerUserId).HasColumnName("owner_user_id");
+        places.Property(place => place.Name).HasColumnName("name");
+        places.Property(place => place.Description).HasColumnName("description");
+        places.Property(place => place.Visibility).HasColumnName("visibility");
+        places.Property(place => place.CreatedAt).HasColumnName("created_at");
+        places.Property(place => place.UpdatedAt).HasColumnName("updated_at");
+        places.HasOne(place => place.Owner).WithMany().HasForeignKey(place => place.OwnerUserId);
+        places.HasIndex(place => place.OwnerUserId);
     }
 }

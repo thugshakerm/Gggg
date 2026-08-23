@@ -1,0 +1,9 @@
+@page
+@model Thugbium.Web.Pages.CreateModel
+@{ ViewData["Title"] = "Create"; }
+<div class="container page-wrap develop-page">
+    <div class="develop-header"><h1 class="h3 font-weight-bold">My Creations</h1><a class="btn btn-primary" href="#new-place">Create New Place</a></div>
+    <div class="develop-tabs"><span class="active">My Creations</span></div>
+    <div class="dark-card p-3 mb-4"><h2 class="h5 mb-3">Your Places</h2>@if (Model.Places.Count == 0) { <div class="empty-state">You have not created any places yet.</div> } else { <div class="list-group">@foreach (var place in Model.Places) { <a class="list-group-item list-group-item-action place-list-item" asp-page="/Places/Details" asp-route-id="@place.Id"><span>@place.Name</span><small>@place.Visibility</small></a> }</div> }</div>
+    <section id="new-place" class="card dark-card"><div class="card-header"><h2 class="h5 mb-0">Create New Place</h2></div><div class="card-body"><form method="post"><div asp-validation-summary="ModelOnly" class="alert alert-danger"></div><div class="form-group"><label asp-for="Input.Name" class="font-weight-bold">Name</label><input asp-for="Input.Name" class="form-control" /><small class="form-text">You can change this later.</small></div><div class="form-group"><label asp-for="Input.Description" class="font-weight-bold">Description</label><textarea asp-for="Input.Description" class="form-control" rows="4"></textarea></div><div class="form-group"><label asp-for="Input.Visibility" class="font-weight-bold">Visibility</label><select asp-for="Input.Visibility" class="form-control"><option>Private</option><option>Public</option></select></div><button class="btn btn-primary" type="submit">Create Place</button></form></div></section>
+</div>
