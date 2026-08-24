@@ -6,6 +6,7 @@ namespace Thugbium.Web.Data;
 public sealed class ThugbiumDbContext(DbContextOptions<ThugbiumDbContext> options) : DbContext(options)
 {
     public DbSet<AppUser> Users => Set<AppUser>();
+    public DbSet<ThugbiumPlace> Places => Set<ThugbiumPlace>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
