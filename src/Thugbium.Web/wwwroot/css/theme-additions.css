@@ -1,0 +1,32 @@
+/* Dedicated account dropdown: compact account control modeled after revival navbar account menus. */
+.account-menu-toggle { display:flex; align-items:center; gap:7px; border:1px solid #ced4da; background:#fff; color:#495057; border-radius:3px; padding:4px 8px; font:inherit; font-size:13px; }
+.account-menu-toggle:hover,.account-menu-toggle:focus { background:#f8f9fa; color:#212529; outline:0; }
+.account-menu-avatar { display:inline-block; width:18px; height:18px; border:1px solid #adb5bd; border-radius:50%; background:#e9ecef; }
+.account-menu-panel { min-width:190px; margin-top:7px; border-color:#ced4da; box-shadow:0 2px 6px rgba(0,0,0,.18); }
+.account-menu-header { padding:9px 14px; color:#6c757d; font-size:12px; border-bottom:1px solid #e9ecef; }
+.account-menu-header strong { display:block; overflow:hidden; color:#212529; font-size:14px; text-overflow:ellipsis; white-space:nowrap; }
+
+/* The authenticated site defaults to light Bootstrap. Preferences can opt into this dark variant. */
+.theme-dark { background:#1b1e21; color:#f8f9fa; }
+.theme-dark .site-nav { background:#212529!important; border-bottom-color:#3f454a; }
+.theme-dark .navbar-light .navbar-nav .nav-link { color:#d5dadd; }
+.theme-dark .navbar-light .navbar-nav .nav-link:hover { color:#fff; }
+.theme-dark .site-footer { background:#212529; border-top-color:#3f454a; color:#adb5bd; }
+.theme-dark .site-footer a { color:#adb5bd; }
+.theme-dark .dark-card { background:#282c30; border-color:#454b50; color:#f8f9fa; }
+.theme-dark .dark-card .card-header { background:#343a40; border-bottom-color:#454b50; }
+.theme-dark .form-control { color:#f8f9fa; background:#212529; border-color:#5a6268; }
+.theme-dark .form-control:focus { color:#f8f9fa; background:#212529; border-color:#80bdff; }
+.theme-dark .form-text,.theme-dark .text-muted { color:#adb5bd!important; }
+.theme-dark .side-note,.theme-dark .home-avatar-empty { background:#212529; border-color:#454b50; }
+.theme-dark .settings-navigation .list-group-item { background:#282c30; border-color:#454b50; color:#adb5bd; }
+.theme-dark .settings-navigation .list-group-item:hover,.theme-dark .settings-navigation .list-group-item.active { background:#343a40; color:#fff; border-color:#454b50; box-shadow:4px 0 0 #00A2FF inset; }
+.theme-dark .catalog-filter a:hover,.theme-dark .catalog-filter a.active { color:#fff; background:#343a40; box-shadow:4px 0 0 #00A2FF inset; }
+.theme-dark .settings-row,.theme-dark .develop-tabs,.theme-dark .catalog-filter-title { border-color:#454b50; }
+.theme-dark .settings-row span,.theme-dark .empty-state,.theme-dark .place-list-item small { color:#adb5bd; }
+.theme-dark .place-list-item { background:#282c30; border-color:#454b50; color:#f8f9fa; }
+.theme-dark .place-list-item:hover { background:#343a40; color:#fff; }
+.theme-dark .place-card { color:#f8f9fa; }.theme-dark .place-card:hover { background:#343a40; color:#fff; }
+.theme-dark .place-thumb,.theme-dark .place-details-thumb { background:#212529; border-bottom-color:#454b50; }
+.theme-dark .place-tabs { border-bottom-color:#454b50; }.theme-dark .place-tabs .nav-link.active,.theme-dark .place-tabs .nav-link:hover { color:#fff; }
+.theme-dark .account-menu-toggle { background:#282c30; border-color:#5a6268; color:#f8f9fa; }.theme-dark .account-menu-toggle:hover,.theme-dark .account-menu-toggle:focus { background:#343a40; color:#fff; }.theme-dark .account-menu-avatar { background:#212529; border-color:#5a6268; }.theme-dark .account-menu-panel { background:#282c30; border-color:#5a6268; }.theme-dark .account-menu-header { color:#adb5bd; border-bottom-color:#454b50; }.theme-dark .account-menu-header strong,.theme-dark .dropdown-item { color:#f8f9fa; }.theme-dark .dropdown-item:hover { background:#343a40; color:#fff; }.theme-dark .dropdown-divider { border-top-color:#454b50; }

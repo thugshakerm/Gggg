@@ -1,4 +1,4 @@
-@page
+@page "/home"
 @model Thugbium.Web.Pages.Account.DashboardModel
 @{ ViewData["Title"] = "Home"; }
 <div class="container page-wrap home-page">
@@ -14,5 +14,4 @@
     <section class="home-section"><div class="home-section-header"><h2>Continue Playing</h2><a class="btn btn-outline-secondary btn-sm" asp-page="/Places/Index">See All</a></div><div class="dark-card home-section-content"><div class="empty-state">You have not played any places yet.</div></div></section>
     <section class="home-section"><div class="home-section-header"><h2>Favorite Games</h2><a class="btn btn-outline-secondary btn-sm" asp-page="/Places/Index">See All</a></div><div class="dark-card home-section-content"><div class="empty-state">You have not favorited any places yet.</div></div></section>
 
-    <section class="home-section"><div class="home-section-header"><h2>My Feed</h2></div><div class="dark-card home-section-content"><div class="input-group mb-3"><input class="form-control" placeholder="New shout" disabled /><div class="input-group-append"><button class="btn btn-primary" disabled>Submit</button></div></div><div class="empty-state">Your feed is empty.</div></div></section>
 </div>
