@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using Thugbium.Web.Data;
 using Thugbium.Web.Models;
 
@@ -7,8 +8,8 @@ namespace Thugbium.Web.Pages.Users;
 public sealed class ProfileModel(ThugbiumDbContext database) : PageModel
 {
     public AppUser? Profile { get; private set; }
-    public async Task OnGetAsync(Guid userId, CancellationToken cancellationToken)
+    public async Task OnGetAsync(long userId, CancellationToken cancellationToken)
     {
-        Profile = await database.Users.FindAsync([userId], cancellationToken);
+        Profile = await database.Users.SingleOrDefaultAsync(user => user.ProfileId == userId, cancellationToken);
     }
 }

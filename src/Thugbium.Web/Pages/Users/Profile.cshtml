@@ -1,23 +1,32 @@
-@page "/users/{userId:guid}/profile"
+@page "/users/{userId:long}/profile"
 @model Thugbium.Web.Pages.Users.ProfileModel
 @{ ViewData["Title"] = Model.Profile?.UserName ?? "User"; }
 <div class="container page-wrap profile-page">
-    @if (Model.Profile is null)
-    {
-        <div class="alert alert-warning">That user does not exist.</div>
-    }
-    else
-    {
-        <section class="card dark-card profile-header-card">
+@if (Model.Profile is null)
+{
+    <div class="alert alert-warning">That user does not exist.</div>
+}
+else
+{
+    <section class="profile-container">
+        <div class="card dark-card profile-header">
             <div class="card-body profile-header-content">
-                <div class="profile-avatar-wrap"><div class="profile-avatar-empty"></div><span class="avatar-status icon-online" title="Online"></span></div>
-                <div class="profile-caption"><h1>@Model.Profile.UserName</h1><div class="profile-details"><span>0 Friends</span><span>0 Followers</span><span>0 Following</span></div><p class="text-muted mb-0">@(Model.Profile.IsDiscordVerified ? "Discord verified" : "Not verified")</p></div>
+                <div class="profile-header-top">
+                    <div class="profile-avatar-image"><div class="profile-avatar-empty"></div><span class="avatar-status online icon-online" title="Online"></span></div>
+                    <div class="header-caption"><div class="header-title"><h2>@Model.Profile.UserName</h2></div><ul class="details-info"><li>0 Friends</li><li>0 Followers</li><li>0 Following</li></ul></div>
+                </div>
             </div>
-        </section>
-        <ul class="nav nav-tabs profile-tabs" role="tablist"><li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#about" role="tab">About</a></li><li class="nav-item"><a class="nav-link" data-toggle="tab" href="#creations" role="tab">Creations</a></li></ul>
-        <div class="tab-content profile-tab-content">
-            <div class="tab-pane active" id="about" role="tabpanel"><section class="card dark-card"><div class="card-header"><h2 class="h5 mb-0">About</h2></div><div class="card-body"><p class="text-muted mb-4">This user has not written anything here yet.</p><div class="profile-statistics"><div><span>Join Date</span><strong>@Model.Profile.CreatedAt.UtcDateTime.ToString("M/d/yyyy")</strong></div><div><span>Place Visits</span><strong>0</strong></div><div><span>Forum Posts</span><strong>0</strong></div></div></div></section></div>
-            <div class="tab-pane" id="creations" role="tabpanel"><section class="card dark-card"><div class="card-header"><h2 class="h5 mb-0">Games</h2></div><div class="card-body"><div class="empty-state">No creations to show.</div></div></section></div>
         </div>
-    }
+        <div class="rbx-tabs-horizontal">
+            <ul class="nav nav-tabs profile-tabs" role="tablist"><li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#about" role="tab">About</a></li><li class="nav-item"><a class="nav-link" data-toggle="tab" href="#creations" role="tab">Creations</a></li></ul>
+            <div class="tab-content profile-tab-content">
+                <div class="tab-pane active" id="about" role="tabpanel">
+                    <section class="card dark-card profile-about mb-3"><div class="card-header"><h3 class="h5 mb-0">About</h3></div><div class="card-body"><div class="profile-about-content"><p class="mb-0 text-muted">This user has not written anything here yet.</p></div></div></section>
+                    <section class="card dark-card profile-statistics"><div class="card-header"><h3 class="h5 mb-0">Statistics</h3></div><div class="card-body"><ul class="profile-stats-container"><li class="profile-stat"><span>Join Date</span><strong>@Model.Profile.CreatedAt.UtcDateTime.ToString("M/d/yyyy")</strong></li><li class="profile-stat"><span>Place Visits</span><strong>0</strong></li></ul></div></section>
+                </div>
+                <div class="tab-pane" id="creations" role="tabpanel"><section class="card dark-card profile-game"><div class="card-header"><h3 class="h5 mb-0">Games</h3></div><div class="card-body"><div class="empty-state">No creations to show.</div></div></section></div>
+            </div>
+        </div>
+    </section>
+}
 </div>

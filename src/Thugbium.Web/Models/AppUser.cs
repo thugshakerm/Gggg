@@ -5,6 +5,7 @@ namespace Thugbium.Web.Models;
 public sealed class AppUser
 {
     public Guid Id { get; set; } = Guid.NewGuid();
+    public long ProfileId { get; set;}
 
     [MaxLength(20)]
     public string UserName { get; set; } = string.Empty;

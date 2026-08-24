@@ -38,6 +38,7 @@ public sealed class AccountService(ThugbiumDbContext database)
         new ClaimsIdentity(
         [
             new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+            new Claim("profile_id", user.ProfileId.ToString()),
             new Claim(ClaimTypes.Name, user.UserName),
             new Claim("discord_verified", user.IsDiscordVerified.ToString().ToLowerInvariant())
         ], CookieAuthenticationDefaults.AuthenticationScheme));

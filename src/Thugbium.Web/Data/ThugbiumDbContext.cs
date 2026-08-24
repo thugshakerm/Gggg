@@ -13,6 +13,7 @@ public sealed class ThugbiumDbContext(DbContextOptions<ThugbiumDbContext> option
         users.ToTable("users");
         users.HasKey(user => user.Id);
         users.Property(user => user.Id).HasColumnName("id");
+        users.Property(user => user.ProfileId).HasColumnName("profile_id").ValueGeneratedOnAdd();
         users.Property(user => user.UserName).HasColumnName("user_name");
         users.Property(user => user.PasswordHash).HasColumnName("password_hash");
         users.Property(user => user.DiscordId).HasColumnName("discord_id");
@@ -21,6 +22,7 @@ public sealed class ThugbiumDbContext(DbContextOptions<ThugbiumDbContext> option
         users.Property(user => user.CreatedAt).HasColumnName("created_at");
         users.Property(user => user.UpdatedAt).HasColumnName("updated_at");
         users.HasIndex(user => user.UserName).IsUnique();
+        users.HasIndex(user => user.ProfileId).IsUnique();
         users.HasIndex(user => user.DiscordId).IsUnique();
     }
 }
