@@ -34,7 +34,7 @@ public sealed class IndexModel(AccountService accounts) : PageModel
         ModelState.Clear();
         if (!TryValidateModel(Credentials, nameof(Credentials))) return Page();
         var user = await accounts.AuthenticateAsync(Credentials.UserName, Credentials.Password, cancellationToken);
-        if (user is null) { ErrorMessage = "Username or password incorrect."; return Page(); }
+        if (user is null) { ErrorMessage = "wrong pass, if it ain working reset dat bih"; return Page(); }
         await HttpContext.SignInAsync(AccountService.CreatePrincipal(user));
         return RedirectToPage("/Account/Dashboard");
     }
