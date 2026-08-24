@@ -1,25 +1,13 @@
 @page "/home"
 @model Thugbium.Web.Pages.Account.DashboardModel
 @{ ViewData["Title"] = "Home"; }
-<div class="container page-wrap fobe-home-page">
-    <div class="row">
-        <aside class="col-lg-3 mb-3">
-            <h5 class="fobe-home-title">@Model.UserData.UserName @if (Model.UserData.IsDiscordVerified) { <img class="verified-badge" src="~/images/verified.svg" alt="Verified" /> }</h5>
-            <div class="card revival-card user-home-card"><div class="card-body"><div class="home-avatar-container" aria-label="Character render pending"><div class="home-avatar-empty rcc-render-placeholder"></div><span class="avatar-status icon-online" title="Online"></span></div></div></div>
-        </aside>
-        <section class="col-lg-9 mb-3">
-            <h5 class="fobe-home-title">Recently Played</h5>
-            <div class="card revival-card recent-home-card"><div class="card-body"><div class="empty-state">You have not played any places yet.</div></div></div>
-        </section>
+<div class="fobe-home-shell">
+    <div class="fobe-home-row fobe-home-top-row">
+        <section class="fobe-user-column"><h2 class="fobe-section-title">@Model.UserData.UserName @if (Model.UserData.IsDiscordVerified) { <img class="verified-badge" src="~/images/verified.svg" alt="Verified" /> }</h2><div class="fobe-surface fobe-user-surface"><div class="fobe-avatar-slot rcc-render-placeholder"><span class="avatar-status icon-online" title="Online"></span></div></div></section>
+        <section class="fobe-main-column"><div class="fobe-section-heading"><h2>Recently Played</h2></div><div class="fobe-surface fobe-recent-surface"><div class="fobe-empty-state">You have not played any places yet.</div></div></section>
     </div>
-    <div class="row">
-        <section class="col-lg-3 mb-3">
-            <h5 class="fobe-home-title">News</h5>
-            <div class="card revival-card news-home-card"><div class="card-body"><p class="text-muted mb-0">No news right now.</p></div></div>
-        </section>
-        <section class="col-lg-9 mb-3">
-            <h5 class="fobe-home-title">Favorite Games</h5>
-            <div class="card revival-card favorites-home-card"><div class="card-body"><div class="empty-state">You have not favorited any places yet.</div></div></div>
-        </section>
+    <div class="fobe-home-row fobe-home-bottom-row">
+        <section class="fobe-news-column"><div class="fobe-section-heading"><h2>News</h2></div><div class="fobe-surface fobe-news-surface"><p>No news right now.</p></div></section>
+        <section class="fobe-main-column"><div class="fobe-section-heading"><h2>Favorite Games</h2></div><div class="fobe-surface fobe-favorites-surface"><div class="fobe-empty-state">You have not favorited any places yet.</div></div></section>
     </div>
 </div>

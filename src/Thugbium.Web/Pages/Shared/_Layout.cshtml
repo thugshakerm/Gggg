@@ -12,54 +12,51 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <!-- Bootstrap remains temporarily for pages not yet converted. Navbar and home use Shrimp CSS only. -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/theme-additions.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/profile.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/revival-shell.css" asp-append-version="true" />
 </head>
-<body class="d-flex flex-column min-vh-100 @(isLanding ? "landing-body" : "")">
+<body class="shrimp-body @(isLanding ? "landing-body" : "")">
     @if (!isLanding)
     {
         <script>if (localStorage.getItem('shrimp-theme') === 'dark') document.documentElement.setAttribute('data-bs-theme', 'dark');</script>
-    }
-    @if (!isLanding)
-    {
-        <nav class="navbar navbar-expand-md navbar-light bg-light site-nav revival-navbar">
-            <div class="container-fluid px-3">
-                <a class="navbar-brand shrimp-nav-wordmark" asp-page="/Index" aria-label="Shrimp home">SHRIMP</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#siteNav" aria-controls="siteNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse shrimp-navbar-content" id="siteNav">
-                    <ul class="navbar-nav me-auto shrimp-primary-nav"><li class="nav-item"><a class="nav-link" asp-page="/Places/Index">Games</a></li><li class="nav-item"><a class="nav-link" asp-page="/Catalog">Catalog</a></li></ul>
+        <nav class="shrimp-navbar" id="shrimpNavbar">
+            <div class="shrimp-navbar-inner">
+                <a class="shrimp-nav-wordmark" asp-page="/Index" aria-label="Shrimp home">SHRIMP</a>
+                <button class="shrimp-nav-toggle" id="shrimpNavToggle" type="button" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+                <div class="shrimp-nav-content" id="shrimpNavContent">
+                    <div class="shrimp-primary-links"><a asp-page="/Places/Index">Games</a><a asp-page="/Catalog">Catalog</a></div>
                     @if (User.Identity?.IsAuthenticated == true)
                     {
-                        <div class="shrimp-account-actions"><a class="shrimp-currency" href="#" title="Currency"><img src="~/images/shrimpbux.png" asp-append-version="true" alt="Shrimpbux" />0</a><div class="dropdown account-menu"><button class="account-menu-toggle dropdown-toggle" type="button" id="userMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="account-menu-avatar rcc-render-placeholder"></span><span>@User.Identity!.Name</span>@if (User.HasClaim("discord_verified", "true")) { <img class="verified-badge" src="~/images/verified.svg" alt="Verified" /> }</button><div class="dropdown-menu dropdown-menu-end account-menu-panel" aria-labelledby="userMenu"><a class="dropdown-item" asp-page="/Users/Profile" asp-route-userId="@User.FindFirst("profile_id")?.Value">Profile</a><a class="dropdown-item" asp-page="/Account/Settings">Settings</a><div class="dropdown-divider"></div><form method="post" asp-page="/Account/Logout"><button class="dropdown-item" type="submit">Log Out</button></form></div></div></div>
+                        <div class="shrimp-nav-actions"><a class="shrimp-currency" href="#" title="Shrimpbux"><img src="~/images/shrimpbux.png" asp-append-version="true" alt="Shrimpbux" />0</a><div class="shrimp-account-menu"><button class="shrimp-account-toggle" id="shrimpAccountToggle" type="button" aria-expanded="false"><span class="shrimp-account-avatar rcc-render-placeholder"></span><span class="shrimp-account-name">@User.Identity!.Name</span>@if (User.HasClaim("discord_verified", "true")) { <img class="verified-badge" src="~/images/verified.svg" alt="Verified" /> }<span class="shrimp-caret">▾</span></button><div class="shrimp-account-panel" id="shrimpAccountPanel"><a asp-page="/Users/Profile" asp-route-userId="@User.FindFirst("profile_id")?.Value">Profile</a><a asp-page="/Account/Settings">Settings</a><div class="shrimp-menu-rule"></div><form method="post" asp-page="/Account/Logout"><button type="submit">Log Out</button></form></div></div></div>
                     }
                     else
                     {
-                        <a class="btn btn-outline-secondary btn-sm me-2" asp-page="/Index">Log In</a><a class="btn btn-primary btn-sm" asp-page="/Index">Sign Up</a>
+                        <div class="shrimp-nav-actions"><a class="shrimp-nav-login" asp-page="/Index">Log In</a><a class="shrimp-nav-signup" asp-page="/Index">Sign Up</a></div>
                     }
                 </div>
             </div>
         </nav>
     }
-    <main class="flex-grow-1">@RenderBody()</main>
+    <main class="shrimp-main">@RenderBody()</main>
     @if (!isLanding)
     {
-        <footer class="site-footer py-4 mt-auto"><div class="container d-md-flex justify-content-between"><span>© 2025 TB, A olroblox revival by thugshaker.</span><span class="mt-2 mt-md-0"><a href="#">Rules</a><a href="#">Terms</a><a href="#">Privacy</a><a href="#">Help</a></span></div></footer>
+        <footer class="site-footer py-4"><div class="container d-md-flex justify-content-between"><span>© 2025 TB, A olroblox revival by thugshaker.</span><span class="mt-2 mt-md-0"><a href="#">Rules</a><a href="#">Terms</a><a href="#">Privacy</a><a href="#">Help</a></span></div></footer>
     }
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        window.applyShrimpTheme = function (isDark) {
-            document.documentElement.setAttribute('data-bs-theme', isDark ? 'dark' : 'light');
-            const nav = document.querySelector('.site-nav');
-            if (nav) {
-                nav.classList.toggle('navbar-dark', isDark);
-                nav.classList.toggle('bg-dark', isDark);
-                nav.classList.toggle('navbar-light', !isDark);
-                nav.classList.toggle('bg-light', !isDark);
-            }
-        };
+        window.applyShrimpTheme = function (isDark) { document.documentElement.setAttribute('data-bs-theme', isDark ? 'dark' : 'light'); };
         window.applyShrimpTheme(localStorage.getItem('shrimp-theme') === 'dark');
+        const navToggle = document.getElementById('shrimpNavToggle');
+        const navContent = document.getElementById('shrimpNavContent');
+        const accountToggle = document.getElementById('shrimpAccountToggle');
+        const accountPanel = document.getElementById('shrimpAccountPanel');
+        if (navToggle && navContent) navToggle.addEventListener('click', () => { const open = navContent.classList.toggle('is-open'); navToggle.setAttribute('aria-expanded', String(open)); });
+        if (accountToggle && accountPanel) accountToggle.addEventListener('click', () => { const open = accountPanel.classList.toggle('is-open'); accountToggle.setAttribute('aria-expanded', String(open)); });
+        document.addEventListener('click', event => { if (accountToggle && accountPanel && !accountToggle.contains(event.target) && !accountPanel.contains(event.target)) accountPanel.classList.remove('is-open'); });
     </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
