@@ -9,7 +9,7 @@ namespace Thugbium.Web.Pages.Account;
 public sealed class LoginModel(AccountService accounts) : PageModel
 {
     [BindProperty] public LoginInput Input { get; set; } = new();
-    public IActionResult OnGet() => User.Identity?.IsAuthenticated == true ? RedirectToPage("/Account/Dashboard") : Page();
+    public IActionResult OnGet() => User.Identity?.IsAuthenticated == true ? RedirectToPage("/Account/Dashboard") : RedirectToPage("/Index");
     public async Task<IActionResult> OnPostAsync(CancellationToken cancellationToken)
     {
         if (!ModelState.IsValid) return Page();
