@@ -18,7 +18,9 @@ public sealed class IndexModel(AccountService accounts) : PageModel
     public async Task<IActionResult> OnPostRegisterAsync(CancellationToken cancellationToken)
     {
         ActiveTab = "register";
-        if (!ModelState.IsValid) return Page();
+        // LoginInput is not part of a registration post; validate only this form.
+        ModelState.Clear();
+        if (!TryValidateModel(Registration, nameof(Registration))) return Page();
         var user = await accounts.CreateAsync(Registration.UserName, Registration.Password, cancellationToken);
         if (user is null) { ErrorMessage = "That username is already in use."; return Page(); }
         await HttpContext.SignInAsync(AccountService.CreatePrincipal(user));
@@ -28,7 +30,9 @@ public sealed class IndexModel(AccountService accounts) : PageModel
     public async Task<IActionResult> OnPostLoginAsync(CancellationToken cancellationToken)
     {
         ActiveTab = "login";
-        if (!ModelState.IsValid) return Page();
+        // RegisterInput is not part of a login post; validate only this form.
+        ModelState.Clear();
+        if (!TryValidateModel(Credentials, nameof(Credentials))) return Page();
         var user = await accounts.AuthenticateAsync(Credentials.UserName, Credentials.Password, cancellationToken);
         if (user is null) { ErrorMessage = "Username or password incorrect."; return Page(); }
         await HttpContext.SignInAsync(AccountService.CreatePrincipal(user));
