@@ -22,6 +22,7 @@ else
             <div class="tab-content profile-tab-content">
                 <div class="tab-pane active" id="about" role="tabpanel">
                     <section class="card dark-card profile-about mb-3"><div class="card-header"><h3 class="h5 mb-0">About</h3></div><div class="card-body"><div class="profile-about-content"><p class="mb-0 text-muted">This user has not written anything here yet.</p></div></div></section>
+                    <section class="card dark-card profile-avatar mb-3"><div class="card-header"><h3 class="h5 mb-0">Currently Wearing</h3></div><div class="card-body"><div class="row"><div class="col-md-6 mb-3 mb-md-0"><div class="fullbody-render" id="fullbody-render" data-user="@Model.Profile.ProfileId"><div class="spinner-border text-primary" role="status"><span class="sr-only">Loading</span></div><span class="fullbody-render-status">Rendering character...</span><span class="fullbody-render-mode">3D</span></div></div><div class="col-md-6"><div class="wearing-items"><div class="wearing-empty">No worn items to show.</div></div></div></div></div></section>
                     <section class="card dark-card profile-statistics"><div class="card-header"><h3 class="h5 mb-0">Statistics</h3></div><div class="card-body"><ul class="profile-stats-container"><li class="profile-stat"><span>Join Date</span><strong>@Model.Profile.CreatedAt.UtcDateTime.ToString("M/d/yyyy")</strong></li><li class="profile-stat"><span>Place Visits</span><strong>0</strong></li></ul></div></section>
                 </div>
                 <div class="tab-pane" id="creations" role="tabpanel"><section class="card dark-card profile-game"><div class="card-header"><h3 class="h5 mb-0">Games</h3></div><div class="card-body"><div class="empty-state">No creations to show.</div></div></section></div>
@@ -30,3 +31,17 @@ else
     </section>
 }
 </div>
+@section Scripts {
+<script>
+    // Placeholder for the private full-body avatar renderer. No avatar data is fabricated here.
+    const fullbodyRender = document.getElementById('fullbody-render');
+    if (fullbodyRender) {
+        const status = fullbodyRender.querySelector('.fullbody-render-status');
+        let dotCount = 0;
+        window.setInterval(() => {
+            dotCount = (dotCount + 1) % 3;
+            status.textContent = 'Rendering character' + '.'.repeat(dotCount + 1);
+        }, 700);
+    }
+</script>
+}
