@@ -1,0 +1,10 @@
+/* Finobe v2 light theme palette, transcribed from finobenet/finobenet public/s/css/light.css. */
+:root { --finobe-blue:#039be5; --finobe-indigo:#6610f2; --finobe-purple:#ba68c8; --finobe-red:#e3342f; --finobe-orange:#fd7e14; --finobe-yellow:#ffb300; --finobe-green:#00b857; --finobe-gray:#6c757d; --finobe-gray-dark:#343a40; }
+.shrimp-body { background:#fff; color:#212529; font-size:.875rem; }
+.shrimp-navbar { background:#fff; border-bottom:1px solid #e6e6e6; box-shadow:none; }
+.shrimp-primary-links a { color:rgba(0,0,0,.5); }.shrimp-primary-links a:hover { color:rgba(0,0,0,.7); background:transparent; border-bottom-color:var(--finobe-blue); }
+.shrimp-currency { color:rgba(0,0,0,.7); }.shrimp-currency:hover { color:var(--finobe-blue); }
+.shrimp-account-toggle { border-color:transparent; border-radius:.25rem; color:rgba(0,0,0,.7); }.shrimp-account-toggle:hover { background:#f8f9fa; color:#212529; }
+.shrimp-account-panel { border:1px solid rgba(0,0,0,.15); border-radius:.25rem; box-shadow:0 2px 4px rgba(0,0,0,.15); }.shrimp-account-panel a:hover,.shrimp-account-panel button:hover { background:#f8f9fa; color:#212529; }
+.fobe-home-shell { max-width:1140px; }.fobe-section-title,.fobe-section-heading h2 { color:#212529; font-size:1.125rem; font-weight:400; }.fobe-surface { border:1px solid rgba(0,0,0,.125); border-radius:.25rem; box-shadow:none; }.fobe-news-surface { color:#6c757d; }
+.shrimp-body .btn-primary { background-color:var(--finobe-blue); border-color:var(--finobe-blue); }.shrimp-body .btn-primary:hover { background-color:#0288cc; border-color:#0281c1; }.shrimp-body a { color:var(--finobe-blue); }
