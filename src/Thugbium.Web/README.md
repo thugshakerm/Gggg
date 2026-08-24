@@ -13,8 +13,7 @@ Initial single-VPS website application for Thugbium.
 ## Included pages
 
 - `/` — landing page
-- `/Account/Register` — registration
-- `/Account/Login` — login
+- `/` — landing, registration, and login
 - `/Account/Discord` — Discord-link entry point
 - `/Account/Dashboard` — signed-in home/dashboard
 - `/Account/Settings` — basic settings

@@ -5,6 +5,11 @@
 .account-menu-panel { min-width:190px; margin-top:7px; border-color:#ced4da; box-shadow:0 2px 6px rgba(0,0,0,.18); }
 .account-menu-header { padding:9px 14px; color:#6c757d; font-size:12px; border-bottom:1px solid #e9ecef; }
 .account-menu-header strong { display:block; overflow:hidden; color:#212529; font-size:14px; text-overflow:ellipsis; white-space:nowrap; }
+.landing-error { margin:14px 22px 0; padding:8px 10px; background:#f8d7da; border:1px solid #f5c6cb; border-radius:.25rem; color:#721c24; font-size:12px; }.landing-error.validation-summary-valid { display:none; }
+.password-help-page { min-height:calc(100vh - 58px); display:flex; align-items:center; justify-content:center; padding:30px; }
+.password-help-card { width:min(420px,100%); background:#fff; border:1px solid rgba(0,0,0,.125); border-radius:.25rem; padding:24px; color:#212529; box-shadow:0 2px 8px rgba(0,0,0,.12); }
+.password-help-card h1 { font-size:22px; font-weight:600; }
+.password-help-card p { color:#6c757d; }
 
 /* The authenticated site defaults to light Bootstrap. Preferences can opt into this dark variant. */
 .theme-dark { background:#1b1e21; color:#f8f9fa; }

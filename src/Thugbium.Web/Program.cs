@@ -8,9 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages(options =>
 {
     options.Conventions.AuthorizeFolder("/Account");
-    options.Conventions.AllowAnonymousToPage("/Account/Login");
-    options.Conventions.AllowAnonymousToPage("/Account/Register");
     options.Conventions.AllowAnonymousToPage("/Account/DiscordCallback");
+    options.Conventions.AllowAnonymousToPage("/ForgotPassword");
 });
 
 builder.Services.AddDbContext<ThugbiumDbContext>(options =>
@@ -19,8 +18,8 @@ builder.Services.AddDbContext<ThugbiumDbContext>(options =>
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
-        options.LoginPath = "/Account/Login";
-        options.AccessDeniedPath = "/Account/Login";
+        options.LoginPath = "/";
+        options.AccessDeniedPath = "/";
         options.Cookie.Name = "__Host-thugbium";
         options.Cookie.HttpOnly = true;
         options.Cookie.SameSite = SameSiteMode.Lax;
