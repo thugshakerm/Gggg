@@ -11,7 +11,6 @@ builder.Services.AddRazorPages(options =>
     options.Conventions.AllowAnonymousToPage("/Account/Login");
     options.Conventions.AllowAnonymousToPage("/Account/Register");
     options.Conventions.AllowAnonymousToPage("/Account/DiscordCallback");
-    options.Conventions.AuthorizePage("/Create");
 });
 
 builder.Services.AddDbContext<ThugbiumDbContext>(options =>
