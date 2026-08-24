@@ -1,3 +1,5 @@
+/* Finobe-style primary navigation: brand left, compact primary links, utility controls on right. */
+.shrimp-primary-nav { margin-left:16px; }.shrimp-primary-nav .nav-link { color:#495057!important; font-size:14px; padding:8px 11px!important; }.shrimp-primary-nav .nav-link:hover { color:#007bff!important; background:#f8f9fa; }.shrimp-account-actions { display:flex; align-items:center; gap:12px; margin-left:auto; }.shrimp-currency { display:inline-flex; align-items:center; gap:5px; color:#495057; font-size:13px; text-decoration:none; }.shrimp-currency:hover { color:#007bff; text-decoration:none; }.shrimp-currency img { width:16px; height:16px; image-rendering:auto; }
 /* Dedicated account dropdown: compact account control modeled after revival navbar account menus. */
 .account-menu-toggle { display:flex; align-items:center; gap:7px; border:1px solid #ced4da; background:#fff; color:#495057; border-radius:3px; padding:4px 8px; font:inherit; font-size:13px; }
 .account-menu-toggle:hover,.account-menu-toggle:focus { background:#f8f9fa; color:#212529; outline:0; }
@@ -15,7 +17,7 @@
 .theme-dark { background:#1b1e21; color:#f8f9fa; }
 .theme-dark .site-nav { background:#212529!important; border-bottom-color:#3f454a; }
 .theme-dark .navbar-light .navbar-nav .nav-link { color:#d5dadd; }
-.theme-dark .navbar-light .navbar-nav .nav-link:hover { color:#fff; }
+.theme-dark .navbar-light .navbar-nav .nav-link:hover { color:#fff; }.theme-dark .shrimp-primary-nav .nav-link { color:#d5dadd!important; }.theme-dark .shrimp-primary-nav .nav-link:hover { color:#fff!important; background:#343a40; }.theme-dark .shrimp-currency { color:#d5dadd; }.theme-dark .shrimp-currency:hover { color:#fff; }
 .theme-dark .site-footer { background:#212529; border-top-color:#3f454a; color:#adb5bd; }
 .theme-dark .site-footer a { color:#adb5bd; }
 .theme-dark .dark-card { background:#282c30; border-color:#454b50; color:#f8f9fa; }

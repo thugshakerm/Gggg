@@ -8,8 +8,8 @@ namespace Thugbium.Web.Pages;
 
 public sealed class IndexModel(AccountService accounts) : PageModel
 {
-    [BindProperty] public RegisterInput RegisterInput { get; set; } = new();
-    [BindProperty] public LoginInput LoginInput { get; set; } = new();
+    [BindProperty] public RegisterInput Registration { get; set; } = new();
+    [BindProperty] public LoginInput Credentials { get; set; } = new();
     public string ActiveTab { get; private set; } = "register";
     public string? ErrorMessage { get; private set; }
 
@@ -19,7 +19,7 @@ public sealed class IndexModel(AccountService accounts) : PageModel
     {
         ActiveTab = "register";
         if (!ModelState.IsValid) return Page();
-        var user = await accounts.CreateAsync(RegisterInput.UserName, RegisterInput.Password, cancellationToken);
+        var user = await accounts.CreateAsync(Registration.UserName, Registration.Password, cancellationToken);
         if (user is null) { ErrorMessage = "That username is already in use."; return Page(); }
         await HttpContext.SignInAsync(AccountService.CreatePrincipal(user));
         return RedirectToPage("/Account/Dashboard");
@@ -29,7 +29,7 @@ public sealed class IndexModel(AccountService accounts) : PageModel
     {
         ActiveTab = "login";
         if (!ModelState.IsValid) return Page();
-        var user = await accounts.AuthenticateAsync(LoginInput.UserName, LoginInput.Password, cancellationToken);
+        var user = await accounts.AuthenticateAsync(Credentials.UserName, Credentials.Password, cancellationToken);
         if (user is null) { ErrorMessage = "Username or password incorrect."; return Page(); }
         await HttpContext.SignInAsync(AccountService.CreatePrincipal(user));
         return RedirectToPage("/Account/Dashboard");

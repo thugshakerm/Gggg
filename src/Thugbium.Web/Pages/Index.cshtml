@@ -9,15 +9,15 @@
         @if (!string.IsNullOrEmpty(Model.ErrorMessage)) { <div class="landing-error">@Model.ErrorMessage</div> }
         <form id="register-panel" method="post" asp-page-handler="Register" class="@(Model.ActiveTab == "register" ? "" : "d-none")">
             <div asp-validation-summary="ModelOnly" class="landing-error"></div>
-            <div class="form-group"><label asp-for="RegisterInput.UserName">Username</label><input asp-for="RegisterInput.UserName" class="form-control" autocomplete="username" /></div>
-            <div class="form-group"><label asp-for="RegisterInput.Password">Password</label><input asp-for="RegisterInput.Password" class="form-control" autocomplete="new-password" /></div>
-            <div class="form-group"><label asp-for="RegisterInput.ConfirmPassword">Confirm Password</label><input asp-for="RegisterInput.ConfirmPassword" class="form-control" autocomplete="new-password" /></div>
-            <div class="form-group form-check"><input asp-for="RegisterInput.AcceptTerms" class="form-check-input" /><label asp-for="RegisterInput.AcceptTerms" class="form-check-label">By signing up you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.</label></div>
+            <div class="form-group"><label asp-for="Registration.UserName">Username</label><input asp-for="Registration.UserName" class="form-control" autocomplete="username" /></div>
+            <div class="form-group"><label asp-for="Registration.Password">Password</label><input asp-for="Registration.Password" class="form-control" autocomplete="new-password" /></div>
+            <div class="form-group"><label asp-for="Registration.ConfirmPassword">Confirm Password</label><input asp-for="Registration.ConfirmPassword" class="form-control" autocomplete="new-password" /></div>
+            <div class="form-group form-check"><input asp-for="Registration.AcceptTerms" class="form-check-input" /><label asp-for="Registration.AcceptTerms" class="form-check-label">By signing up you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.</label></div>
             <button class="btn btn-primary" type="submit">Submit</button>
         </form>
         <form id="login-panel" method="post" asp-page-handler="Login" class="@(Model.ActiveTab == "login" ? "" : "d-none")">
-            <div class="form-group"><label asp-for="LoginInput.UserName">Username</label><input asp-for="LoginInput.UserName" class="form-control" autocomplete="username" /></div>
-            <div class="form-group"><label asp-for="LoginInput.Password">Password</label><input asp-for="LoginInput.Password" class="form-control" autocomplete="current-password" /></div>
+            <div class="form-group"><label asp-for="Credentials.UserName">Username</label><input asp-for="Credentials.UserName" class="form-control" autocomplete="username" /></div>
+            <div class="form-group"><label asp-for="Credentials.Password">Password</label><input asp-for="Credentials.Password" class="form-control" autocomplete="current-password" /></div>
             <button class="btn btn-primary" type="submit">Log In</button><a class="forgot-password-link" asp-page="/ForgotPassword">Forgot password?</a>
         </form>
     </section>
