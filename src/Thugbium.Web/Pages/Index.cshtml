@@ -1,5 +1,35 @@
 @page
 @model Thugbium.Web.Pages.IndexModel
-@{ ViewData["Title"] = "Home"; }
-<section class="hero"><div class="container"><div class="hero-copy"><h1>THUGBIUM</h1><p class="mb-4">A 2017 revival.</p><a class="btn btn-primary btn-lg mr-2" asp-page="/Account/Register">Join Thugbium</a><a class="btn btn-outline-light btn-lg" asp-page="/Places/Index">Explore places</a><p class="small mt-3 mb-0">Free to join · Make stuff · Play stuff · Have fun</p></div></div></section>
-<section class="container py-5 text-center"><h2 class="h3 font-weight-bold">Bring 2017 back.</h2><p class="text-muted mb-4">Make an account, link Discord, get the client later, and hop into a place.</p><div class="row"><div class="col-md-4 mb-3"><div class="dark-card h-100 p-4"><h3 class="h5">Make an account</h3><p class="text-muted mb-0">Pick a username and get set up.</p></div></div><div class="col-md-4 mb-3"><div class="dark-card h-100 p-4"><h3 class="h5">Get the client</h3><p class="text-muted mb-0">Client support is being built privately.</p></div></div><div class="col-md-4 mb-3"><div class="dark-card h-100 p-4"><h3 class="h5">Play some places</h3><p class="text-muted mb-0">Find an old favorite or try something new.</p></div></div></div></section>
+@{ ViewData["Title"] = "Main"; }
+<div class="shrimp-landing">
+    <section class="shrimp-intro">
+        <div class="shrimp-brand"><img src="~/images/shrimp-logo.png" alt="Shrimp logo" /><h1>SHRIMP</h1></div>
+        <div class="shrimp-message">Shrimp is a 2017 revival.</div>
+    </section>
+    <section class="shrimp-auth-card" aria-label="Account access">
+        <h2>SIGN UP OR LOGIN AND START HAVING FUN!</h2>
+        <div class="shrimp-tabs"><button type="button" class="active" data-auth-tab="register">Register</button><button type="button" data-auth-tab="login">Login</button></div>
+        <form id="register-panel" method="post" asp-page="/Account/Register">
+            <div class="form-group"><label for="landing-username">Username</label><input id="landing-username" class="form-control" name="Input.UserName" autocomplete="username" required /></div>
+            <div class="form-group"><label for="landing-password">Password</label><input id="landing-password" class="form-control" type="password" name="Input.Password" autocomplete="new-password" required /></div>
+            <div class="form-group"><label for="landing-confirm">Confirm Password</label><input id="landing-confirm" class="form-control" type="password" name="Input.ConfirmPassword" autocomplete="new-password" required /></div>
+            <div class="form-group form-check"><input id="landing-terms" class="form-check-input" type="checkbox" name="Input.AcceptTerms" value="true" required /><label class="form-check-label" for="landing-terms">By signing up you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.</label></div>
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+        <form id="login-panel" class="d-none" method="post" asp-page="/Account/Login">
+            <div class="form-group"><label for="landing-login-username">Username</label><input id="landing-login-username" class="form-control" name="Input.UserName" autocomplete="username" required /></div>
+            <div class="form-group"><label for="landing-login-password">Password</label><input id="landing-login-password" class="form-control" type="password" name="Input.Password" autocomplete="current-password" required /></div>
+            <button class="btn btn-primary" type="submit">Log In</button>
+        </form>
+    </section>
+</div>
+@section Scripts {
+<script>
+    document.querySelectorAll('[data-auth-tab]').forEach(button => button.addEventListener('click', () => {
+        const register = button.dataset.authTab === 'register';
+        document.getElementById('register-panel').classList.toggle('d-none', !register);
+        document.getElementById('login-panel').classList.toggle('d-none', register);
+        document.querySelectorAll('[data-auth-tab]').forEach(tab => tab.classList.toggle('active', tab === button));
+    }));
+</script>
+}
