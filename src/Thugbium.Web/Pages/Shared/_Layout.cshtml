@@ -27,8 +27,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-light site-nav">
             <div class="container-fluid px-3">
                 <a class="navbar-brand shrimp-nav-wordmark" asp-page="/Index" aria-label="Shrimp home">SHRIMP</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#siteNav"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="siteNav">
+                <div class="navbar-collapse shrimp-navbar-content" id="siteNav">
                     <ul class="navbar-nav me-auto shrimp-primary-nav"><li class="nav-item"><a class="nav-link" asp-page="/Places/Index">Games</a></li><li class="nav-item"><a class="nav-link" asp-page="/Catalog">Catalog</a></li></ul>
                     @if (User.Identity?.IsAuthenticated == true)
                     {
