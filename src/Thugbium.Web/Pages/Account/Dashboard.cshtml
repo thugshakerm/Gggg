@@ -4,7 +4,7 @@
 <div class="container page-wrap home-page">
     <header class="home-header">
         <div class="home-avatar-container" aria-label="Character render pending"><div class="home-avatar-empty rcc-render-placeholder"></div><span class="avatar-status icon-online" title="Online"></span></div>
-        <div class="home-header-content"><h1>Hello, @Model.UserData.UserName!</h1></div>
+        <div class="home-header-content"><h1>Hello, @Model.UserData.UserName! @if (Model.UserData.IsDiscordVerified) { <img class="verified-badge" src="~/images/verified.svg" alt="Verified" /> }</h1></div>
     </header>
     <section class="home-section home-friends">
         <div class="home-section-header"><h2>Friends (0)</h2><a class="btn btn-outline-secondary btn-sm disabled" href="#">See All</a></div>

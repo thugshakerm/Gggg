@@ -13,7 +13,7 @@ else
             <div class="card-body profile-header-content">
                 <div class="profile-header-top">
                     <div class="profile-avatar-image"><div class="profile-avatar-empty rcc-render-placeholder"></div><span class="avatar-status online icon-online" title="Online"></span></div>
-                    <div class="header-caption"><div class="header-title"><h2>@Model.Profile.UserName</h2></div><ul class="details-info"><li>0 Friends</li><li>0 Followers</li><li>0 Following</li></ul></div>
+                    <div class="header-caption"><div class="header-title"><h2>@Model.Profile.UserName @if (Model.Profile.IsDiscordVerified) { <img class="verified-badge" src="~/images/verified.svg" alt="Verified" /> }</h2></div><ul class="details-info"><li>0 Friends</li><li>0 Followers</li><li>0 Following</li></ul></div>
                 </div>
             </div>
         </div>
