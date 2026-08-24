@@ -1,17 +1,25 @@
 @page "/home"
 @model Thugbium.Web.Pages.Account.DashboardModel
 @{ ViewData["Title"] = "Home"; }
-<div class="container page-wrap home-page">
-    <header class="home-header">
-        <div class="home-avatar-container" aria-label="Character render pending"><div class="home-avatar-empty rcc-render-placeholder"></div><span class="avatar-status icon-online" title="Online"></span></div>
-        <div class="home-header-content"><h1>Hello, @Model.UserData.UserName! @if (Model.UserData.IsDiscordVerified) { <img class="verified-badge" src="~/images/verified.svg" alt="Verified" /> }</h1></div>
-    </header>
-    <section class="home-section home-friends">
-        <div class="home-section-header"><h2>Friends (0)</h2><a class="btn btn-outline-secondary btn-sm disabled" href="#">See All</a></div>
-        <div class="dark-card home-section-content"><div class="empty-state">No friends to show yet.</div></div>
-    </section>
-
-    <section class="home-section"><div class="home-section-header"><h2>Continue Playing</h2><a class="btn btn-outline-secondary btn-sm" asp-page="/Places/Index">See All</a></div><div class="dark-card home-section-content"><div class="empty-state">You have not played any places yet.</div></div></section>
-    <section class="home-section"><div class="home-section-header"><h2>Favorite Games</h2><a class="btn btn-outline-secondary btn-sm" asp-page="/Places/Index">See All</a></div><div class="dark-card home-section-content"><div class="empty-state">You have not favorited any places yet.</div></div></section>
-
+<div class="container page-wrap fobe-home-page">
+    <div class="row">
+        <aside class="col-lg-3 mb-3">
+            <h5 class="fobe-home-title">@Model.UserData.UserName @if (Model.UserData.IsDiscordVerified) { <img class="verified-badge" src="~/images/verified.svg" alt="Verified" /> }</h5>
+            <div class="card revival-card user-home-card"><div class="card-body"><div class="home-avatar-container" aria-label="Character render pending"><div class="home-avatar-empty rcc-render-placeholder"></div><span class="avatar-status icon-online" title="Online"></span></div></div></div>
+        </aside>
+        <section class="col-lg-9 mb-3">
+            <h5 class="fobe-home-title">Recently Played</h5>
+            <div class="card revival-card recent-home-card"><div class="card-body"><div class="empty-state">You have not played any places yet.</div></div></div>
+        </section>
+    </div>
+    <div class="row">
+        <section class="col-lg-3 mb-3">
+            <h5 class="fobe-home-title">News</h5>
+            <div class="card revival-card news-home-card"><div class="card-body"><p class="text-muted mb-0">No news right now.</p></div></div>
+        </section>
+        <section class="col-lg-9 mb-3">
+            <h5 class="fobe-home-title">Favorite Games</h5>
+            <div class="card revival-card favorites-home-card"><div class="card-body"><div class="empty-state">You have not favorited any places yet.</div></div></div>
+        </section>
+    </div>
 </div>
