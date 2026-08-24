@@ -1,10 +1,32 @@
 @page "/settings"
 @model Thugbium.Web.Pages.Account.SettingsModel
-@{ ViewData["Title"] = "Account Info"; }
+@{ ViewData["Title"] = "Settings"; }
 <div class="container page-wrap settings-page">
     <h1 class="h3 font-weight-bold mb-4">My Settings</h1>
     <div class="row">
-        <aside class="col-md-3 mb-3"><nav class="list-group settings-navigation" aria-label="Settings navigation"><a class="list-group-item list-group-item-action active" asp-page="/Account/Settings">Account Info</a><a class="list-group-item list-group-item-action" asp-page="/Account/Privacy">Privacy</a><a class="list-group-item list-group-item-action" asp-page="/Account/Security">Security</a><a class="list-group-item list-group-item-action" asp-page="/Account/Preferences">Preferences</a></nav></aside>
-        <div class="col-md-9"><section class="card dark-card"><div class="card-header"><h2 class="h5 mb-0">Account Info</h2></div><div class="card-body"><div class="settings-row"><span>Username</span><strong>@Model.SettingsUser.UserName</strong></div><div class="settings-row"><span>Joined</span><strong>@Model.SettingsUser.CreatedAt.UtcDateTime.ToString("MMMM d, yyyy")</strong></div></div></section></div>
+        <aside class="col-md-3 mb-3"><nav class="list-group settings-navigation" aria-label="Settings navigation"><button class="list-group-item list-group-item-action active" type="button" data-settings-tab="account">Account Info</button><button class="list-group-item list-group-item-action" type="button" data-settings-tab="privacy">Privacy</button><button class="list-group-item list-group-item-action" type="button" data-settings-tab="security">Security</button><button class="list-group-item list-group-item-action" type="button" data-settings-tab="preferences">Preferences</button></nav></aside>
+        <div class="col-md-9">
+            <section class="settings-pane" data-settings-pane="account"><div class="card dark-card"><div class="card-header"><h2 class="h5 mb-0">Account Info</h2></div><div class="card-body"><div class="settings-row"><span>Username</span><strong>@Model.SettingsUser.UserName</strong></div><div class="settings-row"><span>Joined</span><strong>@Model.SettingsUser.CreatedAt.UtcDateTime.ToString("MMMM d, yyyy")</strong></div></div></div></section>
+            <section class="settings-pane d-none" data-settings-pane="privacy"><div class="card dark-card"><div class="card-header"><h2 class="h5 mb-0">Privacy</h2></div><div class="card-body"><p class="text-muted mb-0">Privacy controls will be added after friends, messages, and place permissions exist.</p></div></div></section>
+            <section class="settings-pane d-none" data-settings-pane="security"><div class="card dark-card"><div class="card-header"><h2 class="h5 mb-0">Security</h2></div><div class="card-body"><div class="settings-row"><span>Discord verification</span><strong>@(Model.SettingsUser.IsDiscordVerified ? Model.SettingsUser.DiscordUserName : "Not verified")</strong></div>@if (!Model.SettingsUser.IsDiscordVerified) { <div class="discordversection mt-3"><a class="btn-discord-verify" asp-page="/Account/Discord"><img class="discord-logo" src="~/images/discord-verify.png" alt="Discord" />Verify with Discord</a></div> } else { <p class="text-muted mb-0 mt-3">Your Discord account is linked.</p> }</div></div></section>
+            <section class="settings-pane d-none" data-settings-pane="preferences"><div class="card dark-card"><div class="card-header"><h2 class="h5 mb-0">Preferences</h2></div><div class="card-body"><div class="settings-row"><div><strong>Dark mode</strong><br /><span>Use the Bootstrap dark site theme.</span></div><div class="form-check form-switch"><input type="checkbox" class="form-check-input" role="switch" id="darkModeToggle" /><label class="form-check-label" for="darkModeToggle">Enable</label></div></div></div></div></section>
+        </div>
     </div>
 </div>
+@section Scripts {
+<script>
+    document.querySelectorAll('[data-settings-tab]').forEach(button => button.addEventListener('click', () => {
+        const tab = button.dataset.settingsTab;
+        document.querySelectorAll('[data-settings-tab]').forEach(item => item.classList.toggle('active', item === button));
+        document.querySelectorAll('[data-settings-pane]').forEach(pane => pane.classList.toggle('d-none', pane.dataset.settingsPane !== tab));
+    }));
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    if (darkModeToggle) {
+        darkModeToggle.checked = document.documentElement.getAttribute('data-bs-theme') === 'dark';
+        darkModeToggle.addEventListener('change', () => {
+            window.applyShrimpTheme(darkModeToggle.checked);
+            localStorage.setItem('shrimp-theme', darkModeToggle.checked ? 'dark' : 'light');
+        });
+    }
+</script>
+}

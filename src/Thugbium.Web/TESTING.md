@@ -12,7 +12,7 @@ psql -U thugbium -d thugbium -c "SELECT user_name, is_discord_verified, created_
 5. Use **Log Out** in the account dropdown.
 6. Use the **Login** tab on the landing page with the same test account and confirm `/home` loads again.
 7. Open `/Users/YOUR_USERNAME` and confirm the public profile loads.
-8. Open `/settings/preferences`, enable Dark Mode, and confirm the setting persists after a refresh.
+8. Open `/settings`, choose Preferences in the in-page settings navigation, enable Dark Mode, and confirm the setting persists after a refresh.
 
 Expected behavior:
 
